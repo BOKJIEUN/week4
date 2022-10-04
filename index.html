@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+	<title>Moonlit Winter</title>
+
+	<style type="text/css">
+		body {background: url("bg.jpg");
+		}
+
+		h1{font-size: 58px; text-align: center; color: DarkSlateGrey;
+			font-family: 'Dancing Script', cursive;}
+		.snow{position: absolute; left: 0; top: 0; z-index: -1;}
+
+
+		#letterText{z-index: 1;
+					position: absolute; left: 30%; top: 15%;
+					font-family: 'Gowun Batang', serif;
+					font-size: 30px; line-height: 46px; color: DarkSlateGrey;
+					text-decoration: underline DarkSlateGrey 2px;
+					text-underline-position: under;
+		}
+		.word{opacity: 0; animation: fadein 1s forwards; }
+		@keyframes fadein{
+			to{opacity: 1;}
+
+		}
+		.blink {
+  		animation: blink 0.5s infinite;
+  		font-size: 2.5rem;
+		}
+		@keyframes blink {
+  		to { opacity: 0;
+  		}
+	</style>
+
+
+
+
+</head>
+<body>
+	<h1>Moonlit Winter</h1>
+	<div id="letterText">
+	</div>
+
+	<script type="text/javascript">
+	var text = "윤희에게<br> 잘 지내니?<br> 네 편지를 받자마자 나한테 답장을 쓰는거야.<br> 나는 너처럼 글재주가 좋지 않아서 걱정이지만, 나는 네 편지가 부담스럽지 않았어.<br> 나 역시 가끔 네 생각이 났고, 네 소식이 궁금했어.<br> 너와 만났던 시절에 나는 진정한 행복을 느꼈어.<br> 그렇게 충만했던 시절은 또 오지 못할거야.<br> 모든게 믿을 수 없을만큼 오래 전 일이 돼버렸네?<br> 나는 나한테 주어진 여분의 삶이 벌이라고 생각했어.<br> 그래서 그 동안 스스로에게 벌을 주면서 살았던 것 같아.<br> 편지에 너의 집 주소가 적혀있긴 하지만, 너한테 이 편지를 부칠 수 있을지는 모르겠다.<br> 나한테 그런 용기가 있다면 얼마나 좋을까?<br> 용기를 내고 싶어.<br> 나도 용기를 낼 수 있을거야.<br> <br>추신. 나도 네 꿈을 꿔.<br>";
+
+		var textArray = text.split(" ");
+		var s = 0;
+		var textTimer = setInterval(print, 450);
+		function print(){
+			var f = document.createElement("span")
+			f.innerHTML = textArray[s] + " ";
+			f.className = "word";
+			s++;
+			letterText.appendChild(f);
+			if(s == textArray.length){
+				clearInterval(textTimer);
+			}
+		}
+
+
+		var a = ["snow1", "snow2", "snow3"];
+
+		for (var i = 0; i<400; i++) {
+			var snow = document.createElement("img");
+			snow.src = a[randomBG(0, 2)] + ".png";
+			snow.className = "snow";
+			snow.style.width = randomBG(10, 40) + "px";
+			snow.style.height = "auto";
+			snow.style.left = Math.random()*screen.availWidth + "px";
+			snow.style.top = Math.random()*screen.availHeight + "px";
+			document.body.appendChild(snow);
+		}
+
+
+		function randomBG(min, max) {
+			min = Math.ceil(min);
+			max = Math.floor(max);
+			return Math.floor(Math.random() * (max - min + 1)) + min;
+			
+		}
+
+
+	</script>
+
+
+
+
+</body>
+</html>
